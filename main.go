@@ -16,7 +16,7 @@ var tokenPaths = map[string]string{
 
 func main() {
 	if len(os.Args) != 2 {
-		fmt.Println("Usage: ./influx-token-manipulator <influxd.bolt>\n")
+		fmt.Println("Usage: ./influxdb-token-manipulator <influxd.bolt>\n")
 		os.Exit(1)
 	}
 

@@ -1,4 +1,4 @@
-module influx-token-manipulator
+module influxdb-token-manipulator
 
 go 1.20
 
