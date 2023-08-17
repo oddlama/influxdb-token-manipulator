@@ -1,4 +1,4 @@
-[Building](#building) \| [Installation and Usage](#installation-and-usage-on-nixos)
+[About](#influxdb-token-manipulator) \| [Usage](#usage)
 
 ## Influxdb Token Manipulator
 
