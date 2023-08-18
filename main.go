@@ -34,7 +34,7 @@ func loadMappings(mappingsPath string) (TokenMappings, error) {
 
 func main() {
 	if len(os.Args) != 3 {
-		fmt.Println("Usage: ./influxdb2-token-manipulator <influxd.bolt> <mappings.json>\n")
+		fmt.Println("Usage: ./influxdb2-token-manipulator <influxd.bolt> <mappings.json>")
 		os.Exit(1)
 	}
 
