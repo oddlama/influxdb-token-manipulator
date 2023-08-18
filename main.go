@@ -10,19 +10,42 @@ import (
 	"strings"
 )
 
-var tokenPaths = map[string]string{
-  // Add token secrets here or in separate file
+// TokenMappings is a map that holds the file containing
+// the desired secret for each token
+type TokenMappings map[string]string
+
+func loadMappings(mappingsPath string) (TokenMappings, error) {
+	var mappings TokenMappings
+
+	// Read the JSON file
+	mappingsFile, err := ioutil.ReadFile(mappingsPath)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read mappings file: %w", err)
+	}
+
+	// Parse JSON into the mappings variable
+	err = json.Unmarshal(mappingsFile, &mappings)
+	if err != nil {
+		return nil, fmt.Errorf("failed to unmarshal token mappings: %w", err)
+	}
+
+	return mappings, nil
 }
 
 func main() {
-	if len(os.Args) != 2 {
-		fmt.Println("Usage: ./influxdb-token-manipulator <influxd.bolt>\n")
+	if len(os.Args) != 3 {
+		fmt.Println("Usage: ./influxdb2-token-manipulator <influxd.bolt> <mappings.json>\n")
 		os.Exit(1)
 	}
 
-	dbPath := os.Args[1]
+	// Load token-to-path mappings from the JSON file
+	tokenPaths, err := loadMappings(os.Args[2])
+	if err != nil {
+		fmt.Println("Error while loading token mappings:", err)
+		os.Exit(1)
+	}
 
-	db, err := bbolt.Open(dbPath, 0666, nil)
+	db, err := bbolt.Open(os.Args[1], 0666, nil)
 	if err != nil {
 		fmt.Printf("Error opening database: %v\n", err)
 	}
