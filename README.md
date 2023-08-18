@@ -22,7 +22,6 @@ paths containing their desired secret to a `mappings.json` file:
 {
   "deadbeef12345678deadbeef12345678": "/path/to/file/containing/new/secret",
   "cafecafe00000000cafecafe00000000": "/path/to/other/file/containing/new/secret",
-  # ...
 }
 ```
 
